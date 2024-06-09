@@ -9,7 +9,25 @@ const job = require('../repository/job');
 const user = require('../repository/user');
 
 //User
-exports.addNewUser = () => {};
+exports.addNewUser = async(req,res) => {
+    console.log('llegamos a controllers')
+    try {
+        const savedUser = await systemOfJobService.addNewUser(req);
+        res.status(201).json({ message: 'Usuario registrado correctamente', user: savedUser });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al registrar el user', error });
+    }
+};
+
+exports.readUsers = async (req,res) => {
+    try {
+        let = usuarios = await systemOfJobService.readUser();
+        res.status(200).send(usuarios)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("error para obtener todos los usuarios")
+    }
+};
 exports.getUser = async(req,res)=>{
     try {
         let usuario = await user.findById(req.params.id);

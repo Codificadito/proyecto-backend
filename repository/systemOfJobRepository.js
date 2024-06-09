@@ -1,33 +1,36 @@
-const user = require('./job')
+const User = require('./user')
 const conectarDB = require('../db/db');
 
-conectarDB()
+conectarDB();
 
-exports.getsystemOfJobRepo = async() => {
+exports.getAllUsers = async() => {
     try {
-        let user = await user.find();
-        return user
+        let usuarios = await User.find();
+        return usuarios
     } catch (error) {
         console.log(error)
         
     }
 }
-exports.createsystemOfJobRepo = async(usuario) => {
+exports.addNewUser = async(newUser) => {
+    console.log('se llego al repository',newUser)
+    
     try {
-        let newuser = new user(usuario)
-        await newuser.save();
+
+        return await newUser.save();
     } catch (error) {
-        console.log(error)
+        console.error('Error en el repositorio:', error);
+        throw error;
     }
-}
+  }
 exports.deletesystemOfJobRepo = async (id) => {
-    let userdelete = await user.findById(id);
+    let userdelete = await User.findById(id);
     try {
-        if (!user) {
+        if (!User) {
             console.log('No existe el usuario')
             return "No se encontro el usuario para eliminar"
         }
-        await user.findOneAndDelete({_id:id});
+        await User.findOneAndDelete({_id:id});
     } catch (error) {
         console.log(error)
     }

@@ -7,8 +7,22 @@ http://127.0.0.1:3000/
 
 
 
-###
-http://127.0.0.1:3000/api/user/1
+### Ver todos los usuarios
+GET http://127.0.0.1:3000/api/user/
 
 
 ###
+POST http://127.0.0.1:3000/api/register
+Content-Type: application/json
+
+{
+  "email": "user1@example.com",
+  "username": "user123",
+  "password": "securepassword",
+  "role": "company",
+  "companyDetails": {
+    "name": "TechCorp",
+    "address": "123 Tech Street, New York, NY",
+    "website": "https://techcorp.com"
+  }
+}

@@ -6,11 +6,14 @@ systemOfJobsRouter.use(express.json());
 
 
 ////////////////////
-// Registro de usuario (POST)
+// Registro de usuario (POST) -> funciona
 systemOfJobsRouter.post('/register', systemOfJobsController.addNewUser);
 
 // Leer datos de usuario (GET)
 systemOfJobsRouter.get('/user/:id', systemOfJobsController.getUser);
+
+// Leer todos los datos de usuarios (GET) ->funciona
+systemOfJobsRouter.get('/user/', systemOfJobsController.readUsers);
 
 // Login de usuario (POST)
 systemOfJobsRouter.post('/login', systemOfJobsController.verifyLogin);
