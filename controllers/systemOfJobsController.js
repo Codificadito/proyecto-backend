@@ -28,25 +28,26 @@ exports.readUsers = async (req,res) => {
         res.status(500).send("error para obtener todos los usuarios")
     }
 };
-exports.getUser = async(req,res)=>{
+exports.getUser = async (req, res) => {
     try {
-        let usuario = await user.findById(req.params.id);
+        const email = req.params.email;
+        const usuario = await systemOfJobService.getUser(email);
         if (!usuario) {
-            return res.status(404).json("No existe el usuario")
+            return res.status(404).json({ message: 'Error: el usuario no existe' });
         }
-        res.status(200).json(usuario)
+        return res.status(200).json(usuario);
     } catch (error) {
-        console.error(error);
-        res.status(500).json("Error al recuperar el usuario")
+        console.error('Error en el controlador al recuperar el usuario:', error);
+        return res.status(500).json({ message: 'Error al recuperar el usuario', error });
     }
 };
 
 exports.updateUser = async(req,res) => {
     try {
-        const savedUser = await systemOfJobService.updateUser(req);
-        res.status(201).json({ message: 'Usuario Actualizado correctamente', user: savedUser });
+        const savedUser = await systemOfJobService.updateUser(req,res);
+        return res.status(200).json({ message: 'Usuario Actualizado correctamente', user: savedUser });
     } catch (error) {
-        res.status(500).json({ message: 'Error al actualizar el usuario', error });
+        return res.status(500).json({ message: 'Error al actualizar el usuario', error });
     }
 };
 

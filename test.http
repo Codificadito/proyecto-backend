@@ -10,15 +10,18 @@ http://127.0.0.1:3000/
 ### Ver todos los usuarios
 GET http://127.0.0.1:3000/api/user/
 
+### Ver solo 1 usuario
+GET http://127.0.0.1:3000/api/user/search/user@example.com
 
-###
+
+### -> crear un nuevo usuario
 POST http://127.0.0.1:3000/api/register
 Content-Type: application/json
 
 {
-  "email": "user1@example.com",
+  "email": "user@example.com",
   "username": "user123",
-  "password": "securepassword",
+  "password": "pass1234",
   "role": "company",
   "companyDetails": {
     "name": "TechCorp",
@@ -28,14 +31,14 @@ Content-Type: application/json
 }
 
 
-###
-put http://127.0.0.1:3000/api/user/:email
+### -> actualizar usuarios
+put http://127.0.0.1:3000/api/user/update/user@example.com
 Content-Type: application/json
 
 {
   "email": "user1@example.com",
-  "username": "user123",
-  "password": "securepassword",
+  "username": "usuarioactualizado",
+  "password": "pass123",
   "role": "company",
   "companyDetails": {
     "name": "TechCorp",

@@ -12,6 +12,16 @@ exports.getAllUsers = async() => {
         
     }
 }
+
+exports.getUserByEmail = async (email) => {
+    try {
+        return await User.findOne({ email: email });
+    } catch (error) {
+        console.error('Error en el repositorio al obtener el usuario:', error);
+        throw error;
+    }
+};
+
 exports.addNewUser = async(newUser) => {
     console.log('se llego al repository',newUser)
     
@@ -38,8 +48,7 @@ exports.deletesystemOfJobRepo = async (id) => {
 }
 exports.updateUser = async (usuario) => {
     try {
-        const updatedUser = await usuario.save();
-        res.status(200).json(updatedUser);
+        await usuario.save();
     } catch (error) {
         console.log(error);
     }

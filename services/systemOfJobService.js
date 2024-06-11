@@ -2,13 +2,15 @@
 const systemOfJobRepository = require('../repository/systemOfJobRepository')
 const user = require('../repository/user')
 
-exports.getUser = () => {
+exports.getUser = async (email) => {
     try {
-        return user.getAllUsers();
+        return await systemOfJobRepository.getUserByEmail(email);
     } catch (error) {
-        console.log(error);
+        console.error('Error en el servicio al obtener el usuario:', error);
+        throw error;
     }
-}
+};
+
 
 exports.readUser = () => {
     try {
@@ -48,6 +50,7 @@ exports.updateUser =async (req,res) => {
         const correo = req.params.email;
 
         let usuario = await user.findOne({ email: correo });
+        //Poner un condicional para detectar si se tiene el mismo correo ya registrado
         if (!usuario) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
@@ -60,7 +63,7 @@ exports.updateUser =async (req,res) => {
 
         return systemOfJobRepository.updateUser(usuario);
     } catch (error) {
-        console.error('Error updating user:', error);
+        console.error('Error actualizando user:', error);
         return res.status(500).json({ message: 'Error updating user', error });
     }
 }

@@ -12,11 +12,11 @@ systemOfJobsRouter.post('/register', systemOfJobsController.addNewUser);
 // Leer todos los datos de usuarios (GET) ->funciona
 systemOfJobsRouter.get('/user/', systemOfJobsController.readUsers);
 
-// Actuaizar datos de usuario (GET)
-systemOfJobsRouter.put('/user/:email', systemOfJobsController.updateUser);
+// Actuaizar datos de usuario (GET) -> funciona
+systemOfJobsRouter.put('/user/update/:email', systemOfJobsController.updateUser);
 
-// Leer datos de usuario (GET)
-systemOfJobsRouter.get('/user/:id', systemOfJobsController.getUser);
+// Leer datos de un usuario (GET) ->
+systemOfJobsRouter.get('/user/search/:email', systemOfJobsController.getUser);
 
 // Login de usuario (POST)
 systemOfJobsRouter.post('/login', systemOfJobsController.verifyLogin);
