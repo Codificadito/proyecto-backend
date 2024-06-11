@@ -40,8 +40,19 @@ exports.getUser = async(req,res)=>{
         res.status(500).json("Error al recuperar el usuario")
     }
 };
+
+exports.updateUser = async(req,res) => {
+    try {
+        const savedUser = await systemOfJobService.updateUser(req);
+        res.status(201).json({ message: 'Usuario Actualizado correctamente', user: savedUser });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al actualizar el usuario', error });
+    }
+};
+
+
 exports.verifyLogin = () => {};
-exports.updateUser = () => {};
+
 exports.deleteUser = () => {};
 
 

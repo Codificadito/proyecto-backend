@@ -9,7 +9,7 @@ const candidateSchema = new Schema({
     experience: { type: String },
     contact: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
-    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }
+    userId: { type: Schema.Types.ObjectId, ref: 'user', required: true }
 });
 
 

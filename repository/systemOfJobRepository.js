@@ -32,10 +32,15 @@ exports.deletesystemOfJobRepo = async (id) => {
         }
         await User.findOneAndDelete({_id:id});
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
     
 }
-exports.putsystemOfJobRepo = () => {
-
+exports.updateUser = async (usuario) => {
+    try {
+        const updatedUser = await usuario.save();
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.log(error);
+    }
 }
