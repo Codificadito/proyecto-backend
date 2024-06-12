@@ -1,11 +1,12 @@
-const User = require('./user')
 const conectarDB = require('../db/db');
+const user = require('./user');
+const { json } = require('express');
 
 conectarDB();
 
 exports.getAllUsers = async() => {
     try {
-        let usuarios = await User.find();
+        let usuarios = await user.find();
         return usuarios
     } catch (error) {
         console.log(error)
@@ -15,7 +16,8 @@ exports.getAllUsers = async() => {
 
 exports.getUserByEmail = async (email) => {
     try {
-        return await User.findOne({ email: email });
+        usuario = await user.findOne({ email: email });
+        return usuario
     } catch (error) {
         console.error('Error en el repositorio al obtener el usuario:', error);
         throw error;
@@ -23,7 +25,6 @@ exports.getUserByEmail = async (email) => {
 };
 
 exports.addNewUser = async(newUser) => {
-    console.log('se llego al repository',newUser)
     
     try {
 
@@ -34,7 +35,7 @@ exports.addNewUser = async(newUser) => {
     }
   }
 exports.deletesystemOfJobRepo = async (id) => {
-    let userdelete = await User.findById(id);
+    let userdelete = await user.findById(id);
     try {
         if (!User) {
             console.log('No existe el usuario')
@@ -53,3 +54,18 @@ exports.updateUser = async (usuario) => {
         console.log(error);
     }
 }
+
+exports.deleteOneUser = async (email) => {
+    try {
+        const usuario = await user.findOne({ email: email });
+        if (!usuario) {
+            console.log('No existe el usuario ingresado');
+            return 'No existe el usuario ingresado';
+        }
+        await user.findOneAndDelete({ email: email });
+        return 'Usuario eliminado con éxito';
+    } catch (error) {
+        console.error('Error en el repositorio al eliminar el usuario:', error);
+        throw error;
+    }
+};

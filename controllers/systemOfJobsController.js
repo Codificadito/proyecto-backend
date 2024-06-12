@@ -10,7 +10,6 @@ const user = require('../repository/user');
 
 //User
 exports.addNewUser = async(req,res) => {
-    console.log('llegamos a controllers')
     try {
         const savedUser = await systemOfJobService.addNewUser(req);
         res.status(201).json({ message: 'Usuario registrado correctamente', user: savedUser });
@@ -44,7 +43,7 @@ exports.getUser = async (req, res) => {
 
 exports.updateUser = async(req,res) => {
     try {
-        const savedUser = await systemOfJobService.updateUser(req,res);
+        let savedUser = await systemOfJobService.updateUser(req,res);
         return res.status(200).json({ message: 'Usuario Actualizado correctamente', user: savedUser });
     } catch (error) {
         return res.status(500).json({ message: 'Error al actualizar el usuario', error });
@@ -54,7 +53,14 @@ exports.updateUser = async(req,res) => {
 
 exports.verifyLogin = () => {};
 
-exports.deleteUser = () => {};
+exports.deleteUser = async(req,res) => {
+    try {
+        let userdeled = await systemOfJobService.deleteOneUser(req.params.email);
+        return res.status(200).json({message: 'Usuario eliminado correctamente', user:userdeled})
+    } catch (error) {
+        return res.status(500).json({message: 'Error al eliminar el usuario'})
+    }
+};
 
 
 //trabajos

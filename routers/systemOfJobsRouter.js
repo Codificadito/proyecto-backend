@@ -24,7 +24,7 @@ systemOfJobsRouter.post('/login', systemOfJobsController.verifyLogin);
 // Actualizar datos de usuario (PUT)
 systemOfJobsRouter.put('/user/:email', systemOfJobsController.updateUser);
 
-// Eliminar usuario (DELETE)
-systemOfJobsRouter.delete('/user/:email', systemOfJobsController.deleteUser);
+// Eliminar usuario (DELETE) -> trabjar
+systemOfJobsRouter.delete('/user/delete/:email', systemOfJobsController.deleteUser);
 
 module.exports = systemOfJobsRouter

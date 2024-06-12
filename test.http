@@ -19,8 +19,8 @@ POST http://127.0.0.1:3000/api/register
 Content-Type: application/json
 
 {
-  "email": "user@example.com",
-  "username": "user123",
+  "email": "user2@example.com",
+  "username": "usuario",
   "password": "pass1234",
   "role": "company",
   "companyDetails": {
@@ -32,13 +32,13 @@ Content-Type: application/json
 
 
 ### -> actualizar usuarios
-put http://127.0.0.1:3000/api/user/update/user@example.com
+put http://127.0.0.1:3000/api/user/update/user2@example.com
 Content-Type: application/json
 
 {
-  "email": "user1@example.com",
+  "email": "user2@example.com",
   "username": "usuarioactualizado",
-  "password": "pass123",
+  "password": "pasword-actualizado",
   "role": "company",
   "companyDetails": {
     "name": "TechCorp",
@@ -46,3 +46,6 @@ Content-Type: application/json
     "website": "https://techcorp.com"
   }
 }
+
+###
+DELETE http://127.0.0.1:3000/api/user/delete/user2@example.com

@@ -22,7 +22,6 @@ exports.readUser = () => {
 
 exports.addNewUser =async (req) => {
     const { email, username, password, role, companyDetails } = req.body;
-    console.log(email, username, password, role, companyDetails);
     console.log(req.body);
 
     try {
@@ -63,7 +62,15 @@ exports.updateUser =async (req,res) => {
 
         return systemOfJobRepository.updateUser(usuario);
     } catch (error) {
-        console.error('Error actualizando user:', error);
-        return res.status(500).json({ message: 'Error updating user', error });
+        console.error('Error actualizando el usuario:', error);
+        return res.status(500).json({ message: 'Error actualizando el usuario', error });
+    }
+}
+
+exports.deleteOneUser = async(email)=>{
+    try {
+        await systemOfJobRepository.deleteOneUser(email)
+    } catch (error) {
+        return res.status(500).json({ message: 'Error actualizando el usuario', error });
     }
 }
