@@ -15,16 +15,20 @@ systemOfJobsRouter.get('/user/', systemOfJobsController.readUsers);
 // Actuaizar datos de usuario (GET) -> funciona
 systemOfJobsRouter.put('/user/update/:email', systemOfJobsController.updateUser);
 
-// Leer datos de un usuario (GET) ->
+// Eliminar usuario (DELETE) -> funciona
+systemOfJobsRouter.delete('/user/delete/:email', systemOfJobsController.deleteUser);
+
+// Leer datos de un usuario (GET) -> funciona
 systemOfJobsRouter.get('/user/search/:email', systemOfJobsController.getUser);
 
-// Login de usuario (POST)
-systemOfJobsRouter.post('/login', systemOfJobsController.verifyLogin);
+// Login 
+systemOfJobsRouter.post('/login',systemOfJobsController.loginUser)
+
+//////Publicar un trabajo
 
 // Actualizar datos de usuario (PUT)
 systemOfJobsRouter.put('/user/:email', systemOfJobsController.updateUser);
 
-// Eliminar usuario (DELETE) -> trabjar
-systemOfJobsRouter.delete('/user/delete/:email', systemOfJobsController.deleteUser);
+
 
 module.exports = systemOfJobsRouter

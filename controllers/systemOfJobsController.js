@@ -42,6 +42,7 @@ exports.getUser = async (req, res) => {
 };
 
 exports.updateUser = async(req,res) => {
+    console.log(req)
     try {
         let savedUser = await systemOfJobService.updateUser(req,res);
         return res.status(200).json({ message: 'Usuario Actualizado correctamente', user: savedUser });
@@ -51,7 +52,6 @@ exports.updateUser = async(req,res) => {
 };
 
 
-exports.verifyLogin = () => {};
 
 exports.deleteUser = async(req,res) => {
     try {
@@ -62,6 +62,21 @@ exports.deleteUser = async(req,res) => {
     }
 };
 
+
+exports.loginUser = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const result = await systemOfJobService.loginUser(email, password);
+        if (!result.success) {
+            return res.status(400).json({ message: result.message });
+        }
+
+        return res.status(200).json({ message: result.message, user: result.user });
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        return res.status(500).json({ message: 'Error al iniciar sesión', error });
+    }
+};
 
 //trabajos
 

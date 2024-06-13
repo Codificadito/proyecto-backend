@@ -74,3 +74,21 @@ exports.deleteOneUser = async(email)=>{
         return res.status(500).json({ message: 'Error actualizando el usuario', error });
     }
 }
+
+exports.loginUser = async (email, password) => {
+    try {
+        const user = await systemOfJobRepository.getUserByEmail(email);
+        if (!user) {
+            return { success: false, message: 'Usuario no encontrado' };
+        }
+
+        if (password != user.password) {
+            return { success: false, message: 'Contraseña incorrecta o email incorrectos' };
+        }
+
+        return { success: true, message: 'Login exitoso', user };
+    } catch (error) {
+        console.error('Error en el servicio al iniciar sesión:', error);
+        throw error;
+    }
+};
