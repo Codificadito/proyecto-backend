@@ -12,7 +12,7 @@ const user = require('../repository/user');
 exports.addNewUser = async(req,res) => {
     try {
         const savedUser = await systemOfJobService.addNewUser(req);
-        res.status(201).json({ message: 'Usuario registrado correctamente', user: savedUser });
+        res.status(200).json({ message: 'Usuario registrado correctamente', user: savedUser });
     } catch (error) {
         res.status(500).json({ message: 'Error al registrar el user', error });
     }
@@ -27,6 +27,7 @@ exports.readUsers = async (req,res) => {
         res.status(500).send("error para obtener todos los usuarios")
     }
 };
+
 exports.getUser = async (req, res) => {
     try {
         const email = req.params.email;

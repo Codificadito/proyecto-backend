@@ -34,6 +34,7 @@ exports.addNewUser = async(newUser) => {
         throw error;
     }
   }
+  
 exports.deletesystemOfJobRepo = async (id) => {
     let userdelete = await user.findById(id);
     try {

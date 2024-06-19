@@ -26,7 +26,6 @@ exports.addNewUser =async (req) => {
 
     try {
         
-        // Crear un nuevo usuario
         const newUser = new user({
             email,
             username,
